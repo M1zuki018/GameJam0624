@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Stagesprict : MonoBehaviour
 {
+    [SerializeField] GameObject EnemyPrefab = default;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,5 +16,15 @@ public class Stagesprict : MonoBehaviour
     void Update()
     {
         
+    }
+    public class CubeScript : MonoBehaviour
+    {
+        void OnTriggerEnter(Collider other)
+        {
+            if (Destroy(EnemyPrefab))
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 }
