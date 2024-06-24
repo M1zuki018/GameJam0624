@@ -7,23 +7,23 @@ using UnityEngine.UI;
 
 public class InputText : MonoBehaviour
 {
-    [SerializeField] private Text _text;
+    [SerializeField] private Text _text=default;
     private string _preservation;
-    [SerializeField]public InputField _inputField;
-    [SerializeField] private string _answer;
-    [SerializeField] private string _question;
-
+    [SerializeField]public InputField _inputField=default;
+    private Transform _tf;
     private void value()
     {
-       
-        switch (_text.text)
-        {
-            case "AAA":
-                _preservation = _answer;
-                Debug.Log("switchTrue");
-                break;
-        }
+        //if (GameManager.Instance.CurrentQuestion.CheckAnswer(_inputField.text))
+        //{
+        //    Debug.Log("Answerture");
+        //}
 
+        if (_text.text == _inputField.text)
+        {
+            Debug.Log("Answerture");
+            
+        }
+     
         if (_inputField.text==_preservation)
         {
             Debug.Log("True");
@@ -58,6 +58,19 @@ public class InputText : MonoBehaviour
         // Enterキーが押された時に実行するコード
         Debug.Log("EnterTrue");
         value();
+    }
+    IEnumerator IMoveable()
+    {
+        _tf.localScale += new Vector3(0.01f, 0.01f, 0.01f);
+
+        yield return new WaitForSeconds(0.1f);
+
+        if (Mathf.Approximately(_tf.localScale.x, 2f))
+        {
+            yield break;
+        }
+
+        StartCoroutine(IMoveable());
     }
 
 }
