@@ -1,14 +1,29 @@
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /// <summary>
-/// ‡@ƒQ[ƒ€ƒXƒ^[ƒg‚ªƒIƒ“‚É‚È‚Á‚½‚ç¶¬‚·‚é
-/// ‡AÁ‚¦‚½‚ç‚à‚¤ˆê‰ñ
-/// ‡BƒQ[ƒ€ƒI[ƒo[‚É‚È‚Á‚½‚çƒV[ƒ“‘JˆÚ
+/// â‘ ã‚²ãƒ¼ãƒ ã‚¹ã‚¿ãƒ¼ãƒˆãŒã‚ªãƒ³ã«ãªã£ãŸã‚‰ç”Ÿæˆã™ã‚‹
+/// â‘¡æ¶ˆãˆãŸã‚‰ã‚‚ã†ä¸€å›
+/// â‘¢ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã«ãªã£ãŸã‚‰ã‚·ãƒ¼ãƒ³é·ç§»
 /// </summary>
 public class GameManager : MonoBehaviour
 {
+    [Tooltip("å•é¡Œæ•°")]
+    [Min(1)]
+    [SerializeField]
+    private int _questionCount = 1;
+    [SerializeField]
+    private ScoreManager _scoreManager = default;
     [SerializeField] private GameObject[] _questionObj;
+
+    private readonly Dictionary<SceneType, string> _sceneNameDict = new()
+    {
+        { SceneType.Title, "TitleScene" },
+        { SceneType.InGame, "GameScene" },
+        { SceneType.Result, "ResultScene" }
+    };
+
     private Question _currentQuestion = default;
 
     public Question CurrentQuestion
@@ -19,19 +34,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private static GameManager _instance;
-
-    public static GameManager Instance
-    {
-        get
-        {
-            return _instance;
-        }
-    }
+    public static GameManager Instance { get; private set; }
 
     private void Awake()
     {
-        _instance = this;
+        Instance = this;
+        if (_scoreManager == null) { _scoreManager = FindObjectOfType<ScoreManager>(); }
     }
 
     // Update is called once per frame
@@ -48,6 +56,7 @@ public class GameManager : MonoBehaviour
         if (QuestionMove.IsGameOver)
         {
             SceneManager.LoadScene("SampleScene");
+            //SceneManager.LoadScene(_sceneNameDict[SceneType.Result]);
             QuestionMove.IsGameOver = false;
         }
     }
@@ -57,4 +66,11 @@ public class GameManager : MonoBehaviour
         var go = Instantiate(_questionObj[Random.Range(0, _questionObj.Length)]);
         _currentQuestion = go.GetComponent<Question>();
     }
+}
+
+public enum SceneType
+{
+    Title,
+    InGame,
+    Result
 }
