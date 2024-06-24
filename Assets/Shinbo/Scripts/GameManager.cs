@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (StartManager.IsGameStart == true)
+        if (StartManager.IsGameStart)
         {
             if (GameObject.FindWithTag("Question") == null)
             {
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (QuestionMove.IsGameOver == true)
+        if (QuestionMove.IsGameOver)
         {
             SceneManager.LoadScene("SampleScene");
             QuestionMove.IsGameOver = false;
