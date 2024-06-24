@@ -3,15 +3,15 @@ using UnityEngine.UI;
 
 public class Ranking : MonoBehaviour
 {
-    int _score;
-    string[] _rankingText = { "ランキング1位", "ランキング2位", "ランキング3位", "ランキング4位", "ランキング5位" };
-    int[] _rankingValue = new int[5];
+    private int _score;
+    private string[] _rankingText = { "ランキング1位", "ランキング2位", "ランキング3位", "ランキング4位", "ランキング5位" };
+    private int[] _rankingValue = new int[5];
 
     [SerializeField, Header("ランキングを表示させるテキストエリア")]
-    Text[] _rankingField = new Text[5];
+    private Text[] _rankingField = new Text[5];
 
     // Use this for initialization
-    void Start()
+    private void Start()
     {
         GetRanking();
 
@@ -30,7 +30,7 @@ public class Ranking : MonoBehaviour
     /// <summary>
     /// ランキング呼び出し
     /// </summary>
-    void GetRanking()
+    private void GetRanking()
     {
         //ランキング呼び出し
         for (int i = 0; i < _rankingText.Length; i++)
@@ -41,7 +41,7 @@ public class Ranking : MonoBehaviour
     /// <summary>
     /// ランキング書き込み
     /// </summary>
-    void SetRanking(int value)
+    private void SetRanking(int value)
     {
         //書き込み用
         for (int i = 0; i < _rankingText.Length; i++)
