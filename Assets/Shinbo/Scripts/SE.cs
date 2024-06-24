@@ -1,19 +1,22 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
-/// SE��炵�������ɕʂ̃X�N���v�g����Ή�����֐����Ăяo���悤�ɂ���
+/// SEを鳴らしたい時に別のスクリプトから対応する関数を呼び出すようにする
 /// </summary>
 public class SE : MonoBehaviour
 {
-    [SerializeField] AudioClip[] _seClip;
-    AudioSource _sourse;
+    [SerializeField] private AudioClip[] _seClip;
+    private AudioSource _sourse;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _sourse = GetComponent<AudioSource>();
     }
 
+    /// <summary>
+    /// 正解したときに、正誤判定をとっているスクリプトから関数を呼んでください
+    /// </summary>
     // Update is called once per frame
     public void Correct()
     {
