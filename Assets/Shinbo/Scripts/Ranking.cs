@@ -4,19 +4,17 @@ using UnityEngine.UI;
 public class Ranking : MonoBehaviour
 {
     [SerializeField] private MouseOver _rankPanel;
-    private int _index;
 
     [SerializeField] private int _score;
-    
-    private string[] _rankingText = { "ランキング1位", "ランキング2位", "ランキング3位", "ランキング4位", "ランキング5位" };
-    private int[] _rankingValue = new int[5];
 
     [SerializeField, Header("ランキングを表示させるテキストエリア")]
     private Text[] _rankingField;
 
-    private string[] _rankingTextString = new string[5];
+    private int _index;
 
-    // Use this for initialization
+    private readonly string[] _rankingText = { "ランキング1位", "ランキング2位", "ランキング3位", "ランキング4位", "ランキング5位" };
+    private readonly int[] _rankingValue = new int[5];
+
     private void Start()
     {
         GetRanking();
@@ -28,10 +26,8 @@ public class Ranking : MonoBehaviour
 
         for(int i = 0; i < _rankingField.Length; i++)
         { 
-            _rankingField[i].text = (i+1 + ": " + _rankingValue[i].ToString() + "点");
-            _rankingTextString[i] = _rankingField[i].text;
+            _rankingField[i].text = $"{i + 1}: {_rankingValue[i]}点";
         }
-        
     }
 
     /// <summary>
@@ -73,19 +69,23 @@ public class Ranking : MonoBehaviour
     {
         if (_rankPanel._ranking)
         {
-            if (Input.GetKeyDown(KeyCode.S) && _index <= 1)
+            if (Input.GetKeyDown(KeyCode.S))
             {
+                //必要数を超えないように
+                if (_index + 3 >= _rankingText.Length) { return; }
+
                 _index++;
             }
-            else if (Input.GetKeyDown(KeyCode.W) && _index > 0)
+            else if (Input.GetKeyDown(KeyCode.W))
             {
+                if (_index - 1 < 0) { return; }
+
                 _index--;
             }
 
-            _rankingField[0].text = _rankingTextString[_index];
-            _rankingField[1].text = _rankingTextString[_index + 1];
-            _rankingField[2].text = _rankingTextString[_index + 2];
-
+            _rankingField[0].text = $"{_index + 1}: {_rankingValue[_index]}点";
+            _rankingField[1].text = $"{_index + 2}: {_rankingValue[_index + 1]}点";
+            _rankingField[2].text = $"{_index + 3}: {_rankingValue[_index + 2]}点";
         }
     }
 }
