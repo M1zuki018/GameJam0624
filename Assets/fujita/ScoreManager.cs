@@ -1,44 +1,84 @@
-using TMPro;
+ï»¿using TMPro;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI scoreText;
-    private int score = 0;
-    [SerializeField] TextMeshProUGUI timeTxet;
+    [SerializeField] TextMeshProUGUI timeText;
     [SerializeField] private float leftTime = 30;
-    //‚±‚ÌstageCount‚ÍƒXƒe[ƒWƒNƒŠƒA‚²‚Æ‚É"ƒCƒ“ƒNƒŠƒƒ“ƒg"‚µ‚Ä‚­‚¾‚³‚¢
-    public int stageCount = 1;
-    //timeCount‚ÍƒXƒe[ƒWƒNƒŠƒA‚²‚Æ‚É"false"‚É‚µ‚Ä‚­‚¾‚³‚¢
-    //Ÿ‚ÌƒXƒe[ƒW‚ªŠJn‚·‚é‚Æ‚«‚É"true"‚É‚µ‚Ä‚­‚¾‚³‚¢
-    public bool timeCount = true;
-    void Start()
+
+    /// <summary> 1å•ã‚ãŸã‚Šã®æ™‚é–“ </summary>
+    private float _solveTime = 0f;
+    private bool _isTimeCount = true;
+    /// <summary> ã‚¯ãƒªã‚¢ã—ãŸå•é¡Œã®æ•° </summary>
+    private int _stageCount = 0;
+    private int _score = 0;
+
+    protected int Score
     {
-        SetScoreTxet();
+        get => _score;
+        private set
+        {
+            _score = value;
+            SetScoreText();
+        }
     }
-    void Update()
+
+    //timeCountã¯ã‚¹ãƒ†ãƒ¼ã‚¸ã‚¯ãƒªã‚¢ã”ã¨ã«"false"ã«ã—ã¦ãã ã•ã„
+    //æ¬¡ã®ã‚¹ãƒ†ãƒ¼ã‚¸ãŒé–‹å§‹ã™ã‚‹ã¨ãã«"true"ã«ã—ã¦ãã ã•ã„
+    public bool timeCount = true;
+
+    private void Start()
     {
+        Score = 0;
+        _solveTime = leftTime;
+    }
+
+    private void Update()
+    {
+        //ã‚²ãƒ¼ãƒ é–‹å§‹ã—ã¦ã„ãªã‹ã£ãŸã‚‰è¨ˆæ¸¬ã—ãªã„
+        if (!StartManager.IsGameStart) { return; }
+
+        //if (_isTimeCount)
+        //{
+        //    leftTime -= Time.deltaTime;
+        //    timeText.text = "Time:" + Mathf.RoundToInt(leftTime);
+        //    //lefttimeãŒ0ã«ãªã£ãŸã‚‰æ­¢ã¾ã‚‹ã‚ˆã†ã«ã—ã¾ã™
+        //    if (leftTime <= 0)
+        //    {
+        //        _isTimeCount = false;
+        //        leftTime = _solveTime;
+        //        //ã“ã“ã¯ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã®å‡¦ç†ã«ã‚‚ä½¿ãˆã¾ã™
+        //    }
+        //}
+
         if (timeCount)
         {
             leftTime -= Time.deltaTime;
-            timeTxet.text = "Time:" + Mathf.RoundToInt(leftTime);
-            //lefttime‚ª0‚É‚È‚Á‚½‚ç~‚Ü‚é‚æ‚¤‚É‚µ‚Ü‚·
+            timeText.text = "Time:" + Mathf.RoundToInt(leftTime);
+            //lefttimeãŒ0ã«ãªã£ãŸã‚‰æ­¢ã¾ã‚‹ã‚ˆã†ã«ã—ã¾ã™
             if (leftTime <= 0)
             {
                 timeCount = false;
-                //‚±‚±‚ÍƒQ[ƒ€ƒI[ƒo[‚Ìˆ—‚É‚àg‚¦‚Ü‚·
+                //ã“ã“ã¯ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã®å‡¦ç†ã«ã‚‚ä½¿ãˆã¾ã™
             }
         }
     }
-    //‚±‚ÌŠÖ”‚ÍƒXƒe[ƒW‚ğƒNƒŠƒA‚·‚é‚²‚Æ‚É—˜—p‚µ‚Ä‚­‚¾‚³‚¢
+
+    /// <summary> 1å•ã‚¯ãƒªã‚¢ã—ãŸã‚‰å‘¼ã³å‡ºã™é–¢æ•° </summary>
     public void AddScore()
     {
-        score += Mathf.RoundToInt(leftTime) * stageCount;
-        scoreText.text = "SCORE:" + score;
+        //ã‚¯ãƒªã‚¢æ•°ã‚’åŠ ç®—ã—ã¦ã€ã‚¹ã‚³ã‚¢ã‚’æ›´æ–°
+        _stageCount++;
+        Score += Mathf.RoundToInt(leftTime) * _stageCount;
+
+        _isTimeCount = false;
+        leftTime = _solveTime;
     }
-    //ƒXƒRƒA‰Šú‰»—pŠÖ”
-    private void SetScoreTxet()
+
+    /// <summary> ã‚¹ã‚³ã‚¢ã®è¡¨ç¤ºã‚’æ›´æ–°ã™ã‚‹é–¢æ•° </summary>
+    private void SetScoreText()
     {
-        scoreText.text = "SCORE:" + score;
+        scoreText.text = "SCORE:" + _score;
     }
 }
