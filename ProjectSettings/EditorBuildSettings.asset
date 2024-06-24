@@ -6,9 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/MasterScenes/TitleScene.unity
+    guid: 4e09323d8d1b2f242895b441c0ca5774
   - enabled: 1
-    path: Assets/Yamasaki/secondtest.unity
-    guid: dd3a93f9c6f595540b0f9d9aa0543ab2
+    path: Assets/Scenes/MasterScenes/GameScene.unity
+    guid: 29f92c9c12b6f6548a716c0ce669c158
+  - enabled: 1
+    path: Assets/Scenes/MasterScenes/ResultScene.unity
+    guid: 91d8d72a6bccdf749805abdd7998146f
   m_configObjects: {}
