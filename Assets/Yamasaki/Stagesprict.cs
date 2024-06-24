@@ -15,16 +15,10 @@ public class Stagesprict : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    public class CubeScript : MonoBehaviour
+    void OnTriggerEnter(Collider other)
     {
-        void OnTriggerEnter(Collider other)
-        {
-            if (Destroy(EnemyPrefab))
-            {
-                Destroy(this.gameObject);
-            }
-        }
+        if (EnemyPrefab != null) { Destroy(gameObject); }
     }
 }
