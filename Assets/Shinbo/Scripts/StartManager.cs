@@ -8,21 +8,18 @@
 
 public class StartManager : MonoBehaviour
 {
-    GameObject _explanationPanel;
+    [SerializeField] private GameObject _explanationPanel;
 
-    private void Awake()
-    {
-        _explanationPanel = GameObject.Find("ExplanationPanel");
-    }
+    public static bool IsGameStart = false;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _explanationPanel.SetActive(true);
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -30,11 +27,12 @@ public class StartManager : MonoBehaviour
         }
     }
 
-    void GameStart()
+    private void GameStart()
     {
         Debug.Log("ゲームスタート");
+        IsGameStart = true;
         //ゲーム開始の関数をここから呼べるようにする
-        Destroy(_explanationPanel);
-        Destroy(gameObject);
+        _explanationPanel.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

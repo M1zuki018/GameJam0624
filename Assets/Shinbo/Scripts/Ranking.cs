@@ -1,13 +1,9 @@
-﻿using Unity.VisualScripting;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Ranking : MonoBehaviour
 {
-
-    [SerializeField, Header("数値")]
     int _score;
-
     string[] _rankingText = { "ランキング1位", "ランキング2位", "ランキング3位", "ランキング4位", "ランキング5位" };
     int[] _rankingValue = new int[5];
 
@@ -45,17 +41,17 @@ public class Ranking : MonoBehaviour
     /// <summary>
     /// ランキング書き込み
     /// </summary>
-    void SetRanking(int _value)
+    void SetRanking(int value)
     {
         //書き込み用
         for (int i = 0; i < _rankingText.Length; i++)
         {
             //取得した値とRankingの値を比較して入れ替え
-            if (_value > _rankingValue[i])
+            if (value > _rankingValue[i])
             {
                 var change = _rankingValue[i];
-                _rankingValue[i] = _value;
-                _value = change;
+                _rankingValue[i] = value;
+                value = change;
             }
         }
 
