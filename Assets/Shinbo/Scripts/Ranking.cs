@@ -3,27 +3,30 @@ using UnityEngine.UI;
 
 public class Ranking : MonoBehaviour
 {
-    private int _score;
-    private string[] _rankingText = { "ランキング1位", "ランキング2位", "ランキング3位", "ランキング4位", "ランキング5位" };
-    private int[] _rankingValue = new int[5];
+    [SerializeField] private MouseOver _rankPanel;
+
+    [SerializeField] private int _score;
 
     [SerializeField, Header("ランキングを表示させるテキストエリア")]
-    private Text[] _rankingField = new Text[5];
+    private Text[] _rankingField;
 
-    // Use this for initialization
+    private int _index;
+
+    private readonly string[] _rankingText = { "ランキング1位", "ランキング2位", "ランキング3位", "ランキング4位", "ランキング5位" };
+    private readonly int[] _rankingValue = new int[5];
+
     private void Start()
     {
         GetRanking();
 
-        _score = 300; //スコアを取得
+        //_score = _setRanking; //スコアを取得
         //デバッグ用　point = 300;
 
         SetRanking(_score);
 
-        for (int i = 0; i < _rankingField.Length; i++)
-        {
-            int x = i + 1;
-            _rankingField[i].text = (x + (": ") + _rankingValue[i].ToString() + "点");
+        for(int i = 0; i < _rankingField.Length; i++)
+        { 
+            _rankingField[i].text = $"{i + 1}: {_rankingValue[i]}点";
         }
     }
 
@@ -35,7 +38,7 @@ public class Ranking : MonoBehaviour
         //ランキング呼び出し
         for (int i = 0; i < _rankingText.Length; i++)
         {
-            _rankingValue[i] = PlayerPrefs.GetInt(_rankingText[i]);
+            _rankingValue[i] = PlayerPrefs.GetInt(_rankingText[i]); //5位までとれている
         }
     }
     /// <summary>
@@ -59,6 +62,30 @@ public class Ranking : MonoBehaviour
         for (int i = 0; i < _rankingText.Length; i++)
         {
             PlayerPrefs.SetInt(_rankingText[i], _rankingValue[i]);
+        }
+    }
+
+    private void Update()
+    {
+        if (_rankPanel._ranking)
+        {
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                //必要数を超えないように
+                if (_index + 3 >= _rankingText.Length) { return; }
+
+                _index++;
+            }
+            else if (Input.GetKeyDown(KeyCode.W))
+            {
+                if (_index - 1 < 0) { return; }
+
+                _index--;
+            }
+
+            _rankingField[0].text = $"{_index + 1}: {_rankingValue[_index]}点";
+            _rankingField[1].text = $"{_index + 2}: {_rankingValue[_index + 1]}点";
+            _rankingField[2].text = $"{_index + 3}: {_rankingValue[_index + 2]}点";
         }
     }
 }
