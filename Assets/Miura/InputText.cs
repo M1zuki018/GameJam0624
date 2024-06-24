@@ -59,18 +59,4 @@ public class InputText : MonoBehaviour
         Debug.Log("EnterTrue");
         value();
     }
-    IEnumerator IMoveable()
-    {
-        _tf.localScale += new Vector3(0.01f, 0.01f, 0.01f);
-
-        yield return new WaitForSeconds(0.1f);
-
-        if (Mathf.Approximately(_tf.localScale.x, 2f))
-        {
-            yield break;
-        }
-
-        StartCoroutine(IMoveable());
-    }
-
 }
