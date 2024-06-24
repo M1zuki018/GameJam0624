@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2774932273058183362}
   - component: {fileID: 443243711837388754}
   m_Layer: 5
-  m_Name: QuestionDataSample
+  m_Name: RubbleHeap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,4 +88,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a3dbf4f51e14d42a10e20434ac827b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _questionData: {fileID: 0}
+  _questionData: {fileID: 11400000, guid: 7efafff3133611a43a42c5a9a63c4f9c, type: 2}
