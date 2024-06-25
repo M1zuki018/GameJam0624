@@ -1057,6 +1057,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6845700367467148154, guid: 425fe3b7cf398eb438c6c4500201d0b6, type: 3}
   m_PrefabInstance: {fileID: 1486117190}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1486117192 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6364589308231659327, guid: 425fe3b7cf398eb438c6c4500201d0b6, type: 3}
+  m_PrefabInstance: {fileID: 1486117190}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1506647989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1141,6 +1146,14 @@ PrefabInstance:
       propertyPath: _fadeOut
       value: 
       objectReference: {fileID: 937518248}
+    - target: {fileID: 6356338845414814184, guid: c83d33e8b66ad21409cb2579100ded64, type: 3}
+      propertyPath: _clearObj
+      value: 
+      objectReference: {fileID: 1486117192}
+    - target: {fileID: 6356338845414814184, guid: c83d33e8b66ad21409cb2579100ded64, type: 3}
+      propertyPath: CollisionSE
+      value: 
+      objectReference: {fileID: 8300000, guid: 497bb08229fc76141a1c85f4262152fc, type: 3}
     - target: {fileID: 6356338845414814184, guid: c83d33e8b66ad21409cb2579100ded64, type: 3}
       propertyPath: _gameCanvas
       value: 
@@ -1536,7 +1549,6 @@ MonoBehaviour:
   _text: {fileID: 0}
   _inputField: {fileID: 11851720493466535}
   _rtf: {fileID: 8741109613420139039}
-  _gameobj: {fileID: 1706262132672595221}
   _answerTrue: {fileID: 8300000, guid: 534bfdcaa41c8ca46a870f8d8219dc86, type: 3}
   _answerFalse: {fileID: 8300000, guid: d209808561ffb304aab1253cd526ac9c, type: 3}
   _answerShoot: {fileID: 8300000, guid: d2f150239aa5c644988f62c5f0e4b172, type: 3}
