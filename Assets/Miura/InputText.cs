@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class InputText : MonoBehaviour
 {
+    [SerializeField]
+    private StageImageController _stageImageController = default;
     [SerializeField] private Text _text = default;
     [SerializeField] public InputField _inputField = default;
     public Ui _ui;
@@ -47,6 +49,8 @@ public class InputText : MonoBehaviour
         {
             Debug.Log("Answerture");
             _sePlayer.QuestionDestroyedSE(GameManager.Instance.CurrentQuestion.GetSE());
+            GameManager.Instance.ScoreManager.AddScore();
+            _stageImageController.Correct(GameManager.Instance.ScoreManager.StageCount);
         }
         else
         {
