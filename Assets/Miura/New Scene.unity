@@ -295,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04e277d11cfd2cd47908a4be65fdb303, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _stageImageController: {fileID: 0}
   _text: {fileID: 733771347}
   _inputField: {fileID: 448943135}
 --- !u!114 &448943139
@@ -309,6 +310,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63a91380a159214283acb352b9d43d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _rtf: {fileID: 448943134}
+  _gameobj: {fileID: 448943133}
+  _uiTime: 0
+  _setActiveBool: 1
 --- !u!1 &733771345
 GameObject:
   m_ObjectHideFlags: 0

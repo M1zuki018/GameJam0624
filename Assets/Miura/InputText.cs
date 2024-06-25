@@ -7,8 +7,15 @@ public class InputText : MonoBehaviour
     private StageImageController _stageImageController = default;
     [SerializeField] private Text _text = default;
     [SerializeField] public InputField _inputField = default;
-    public Ui _ui;
     private SE _sePlayer = default;
+
+    [SerializeField]
+    private RectTransform _rtf = default;
+    [SerializeField]
+    private GameObject _gameobj = default;
+
+    private float _uiTime;
+    private bool _setActiveBool = true;
 
     void Start()
     {
@@ -33,17 +40,17 @@ public class InputText : MonoBehaviour
     {
         // Enterキーが押された時に実行するコード
         Debug.Log("EnterTrue");
-        
-       _ui.Move();
-        value();
+
+        MovementLogic();
+        Invoke("value",0.5f);
     }
 
     private void value()
     {
-        //if (GameManager.Instance.CurrentQuestion.CheckAnswer(_inputField.text))
-        //{
-        //    Debug.Log("Answerture");
-        //}
+        if (GameManager.Instance.CurrentQuestion.CheckAnswer(_inputField.text))
+        {
+            Debug.Log("Answerture");
+        }
 
         if (_text.text == _inputField.text)
         {
@@ -55,6 +62,35 @@ public class InputText : MonoBehaviour
         else
         {
             Debug.Log("false");
+            UiReset();
         }
     }
+    public void UiReset()
+    {
+        _rtf.localScale = Vector3.one;
+        _rtf.localPosition = Vector3.one;
+        Debug.Log(_rtf.localPosition);
+        uiSetActive();
+    }
+
+    public void uiSetActive()
+    {
+        _gameobj.SetActive(_setActiveBool = !_setActiveBool);
+        Debug.Log($"_uisetActive:{_setActiveBool}");
+    }
+
+    public void MovementLogic()
+    {
+        Debug.Log("Move");
+
+        while (_rtf.localScale.x >= 0.5f)
+        {
+            _rtf.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
+        }
+        Invoke("uiSetActive", 0.5f);
+        Debug.Log("MOve");
+        value();
+    }
 }
+
+
