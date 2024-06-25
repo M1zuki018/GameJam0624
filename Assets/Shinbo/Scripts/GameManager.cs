@@ -14,7 +14,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int _questionCount = 1;
     [SerializeField]
+    private SceneType _loadScene = SceneType.Result;
+    [SerializeField]
     private ScoreManager _scoreManager = default;
+    [SerializeField]
+    private RectTransform _gameCanvas = default;
     [SerializeField] private GameObject[] _questionObj;
 
     private readonly Dictionary<SceneType, string> _sceneNameDict = new()
@@ -55,7 +59,7 @@ public class GameManager : MonoBehaviour
 
         if (QuestionMove.IsGameOver)
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene(_sceneNameDict[_loadScene]);
             //SceneManager.LoadScene(_sceneNameDict[SceneType.Result]);
             QuestionMove.IsGameOver = false;
         }
@@ -64,6 +68,9 @@ public class GameManager : MonoBehaviour
     private void Spawn()
     {
         var go = Instantiate(_questionObj[Random.Range(0, _questionObj.Length)]);
+        var rect = go.GetComponent<RectTransform>();
+        rect.parent = _gameCanvas;
+        rect.localPosition = Vector3.zero;
         _currentQuestion = go.GetComponent<Question>();
     }
 }

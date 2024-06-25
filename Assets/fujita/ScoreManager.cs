@@ -1,10 +1,10 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] TextMeshProUGUI timeText;
+    [SerializeField] Text scoreText;
+    [SerializeField] Text timeText;
     [SerializeField] private float leftTime = 30;
 
     /// <summary> 1問あたりの時間 </summary>
@@ -55,7 +55,7 @@ public class ScoreManager : MonoBehaviour
         if (timeCount)
         {
             leftTime -= Time.deltaTime;
-            timeText.text = "Time:" + Mathf.RoundToInt(leftTime);
+            timeText.text = Mathf.RoundToInt(leftTime).ToString();
             //lefttimeが0になったら止まるようにします
             if (leftTime <= 0)
             {
@@ -79,6 +79,6 @@ public class ScoreManager : MonoBehaviour
     /// <summary> スコアの表示を更新する関数 </summary>
     private void SetScoreText()
     {
-        scoreText.text = "SCORE:" + _score;
+        scoreText.text = _score.ToString();
     }
 }
