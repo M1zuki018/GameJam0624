@@ -17,10 +17,17 @@ public class InputText : MonoBehaviour
     private float _uiTime;
     private bool _setActiveBool = true;
 
+
+    [SerializeField] private AudioClip _answerTrue;
+    [SerializeField] private AudioClip _answerFalse;
+    [SerializeField] private AudioClip _answerShoot;
+    private SE _sePlayervalue;
+
     void Start()
     {
         _sePlayer = FindObjectOfType<SE>();
         _inputField.onEndEdit.AddListener(EnterPressed);
+        _sePlayervalue = FindObjectOfType<SE>();
     }
     void OnDestroy()
     {
@@ -47,20 +54,19 @@ public class InputText : MonoBehaviour
 
     private void value()
     {
-        //if (GameManager.Instance.CurrentQuestion.CheckAnswer(_inputField.text))
-        //{
-        //    Debug.Log("Answerture");
-        //    _sePlayer.QuestionDestroyedSE(GameManager.Instance.CurrentQuestion.GetSE());
-        //    GameManager.Instance.ScoreManager.AddScore();
-        //    _stageImageController.Correct(GameManager.Instance.ScoreManager.StageCount);
-        //}
-
-        if (_inputField.text == _text.text)
+        
+        if (GameManager.Instance.CurrentQuestion.CheckAnswer(_inputField.text))
         {
+            Debug.Log("Answerture");
+            _sePlayer.QuestionDestroyedSE(GameManager.Instance.CurrentQuestion.GetSE());
+            GameManager.Instance.ScoreManager.AddScore();
+            _stageImageController.Correct(GameManager.Instance.ScoreManager.StageCount);
+            _sePlayervalue.QuestionDestroyedSE(_answerTrue);
             Debug.Log("true");
         }
         else
         {
+            _sePlayervalue.QuestionDestroyedSE(_answerFalse);
             Debug.Log("false");
             Invoke("UiReset", 0.3f);
         }
@@ -83,7 +89,7 @@ public class InputText : MonoBehaviour
     public void MovementLogic()
     {
         Debug.Log("Move");
-
+        _sePlayervalue.QuestionDestroyedSE(_answerShoot);
         while (_rtf.localScale.x >= 0.5f)
         {
             _rtf.localScale -= new Vector3(0.1f, 0.1f,0.1f);
