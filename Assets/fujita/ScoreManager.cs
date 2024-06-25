@@ -19,6 +19,8 @@ public class ScoreManager : MonoBehaviour
 
     //SE関係
     [SerializeField] public AudioClip _countdownRemainingSe;
+    [SerializeField] public AudioClip _gameOverSe;
+    [SerializeField] public AudioClip _gameClearSe;
     private SE _sePlayer;
     private bool _onePlay;
 
@@ -62,6 +64,7 @@ public class ScoreManager : MonoBehaviour
             if (_timer <= 0)
             {
                 _isTimeCount = false;
+                _sePlayer.QuestionDestroyedSE(_gameOverSe);
                 //ここはゲームオーバーの処理にも使えます
             }
         }
@@ -70,6 +73,8 @@ public class ScoreManager : MonoBehaviour
     /// <summary> 1問クリアしたら呼び出す関数 </summary>
     public void AddScore()
     {
+        _sePlayer.QuestionDestroyedSE(_gameClearSe);
+
         //クリア数を加算して、スコアを更新
         _stageCount++;
         _baseScore += (GameManager.Instance.CurrentQuestion.GetQuestionScore() - Mathf.RoundToInt(_timer));

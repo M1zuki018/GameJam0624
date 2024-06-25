@@ -11,6 +11,7 @@ public class MainCursor : MonoBehaviour
     private int _index = 0;
 
     [SerializeField] private GameObject _panel;
+    CreditTextMove _textMove;
 
     [SerializeField] Animator _fadeOut;
 
@@ -26,6 +27,7 @@ public class MainCursor : MonoBehaviour
     void Start()
     {
         _buttons[_index].Select();
+        _textMove = _panel.GetComponentInChildren<CreditTextMove>();
 
         _sePlayer = FindObjectOfType<SE>();
         _panel.SetActive(false);
@@ -72,6 +74,7 @@ public class MainCursor : MonoBehaviour
                 {
                     _panel.SetActive(true);
                     CreditOpen();
+                    _textMove.Set();
                 }
                 _sePlayer.QuestionDestroyedSE(_determinationSe);
                 _isFirst = true;
