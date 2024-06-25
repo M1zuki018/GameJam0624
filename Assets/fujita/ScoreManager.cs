@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
@@ -73,12 +74,15 @@ public class ScoreManager : MonoBehaviour
     /// <summary> 1問クリアしたら呼び出す関数 </summary>
     public void AddScore()
     {
-        _sePlayer.QuestionDestroyedSE(_gameClearSe);
-
         //クリア数を加算して、スコアを更新
         _stageCount++;
         _baseScore += (GameManager.Instance.CurrentQuestion.GetQuestionScore() - Mathf.RoundToInt(_timer));
 
+        if (_stageCount == 5)
+        {
+            _sePlayer.QuestionDestroyedSE(_gameClearSe);
+            SceneManager.LoadScene("ResultScene");
+        }
         TotalScore = _baseScore * _stageCount;
 
         _isTimeCount = false;
