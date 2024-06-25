@@ -40,35 +40,36 @@ public class InputText : MonoBehaviour
     {
         // Enterキーが押された時に実行するコード
         Debug.Log("EnterTrue");
-
         MovementLogic();
-        Invoke("value",0.5f);
+        Invoke("uiSetActive", 0.5f);
+        value();
     }
 
     private void value()
     {
-        if (GameManager.Instance.CurrentQuestion.CheckAnswer(_inputField.text))
-        {
-            Debug.Log("Answerture");
-        }
+        //if (GameManager.Instance.CurrentQuestion.CheckAnswer(_inputField.text))
+        //{
+        //    Debug.Log("Answerture");
+        //    _sePlayer.QuestionDestroyedSE(GameManager.Instance.CurrentQuestion.GetSE());
+        //    GameManager.Instance.ScoreManager.AddScore();
+        //    _stageImageController.Correct(GameManager.Instance.ScoreManager.StageCount);
+        //}
 
-        if (_text.text == _inputField.text)
+        if (_inputField.text == _text.text)
         {
-            Debug.Log("Answerture");
-            _sePlayer.QuestionDestroyedSE(GameManager.Instance.CurrentQuestion.GetSE());
-            GameManager.Instance.ScoreManager.AddScore();
-            _stageImageController.Correct(GameManager.Instance.ScoreManager.StageCount);
+            Debug.Log("true");
         }
         else
         {
             Debug.Log("false");
-            UiReset();
+            Invoke("UiReset", 0.3f);
         }
     }
     public void UiReset()
     {
         _rtf.localScale = Vector3.one;
         _rtf.localPosition = Vector3.one;
+        _inputField.text = "";
         Debug.Log(_rtf.localPosition);
         uiSetActive();
     }
@@ -85,11 +86,8 @@ public class InputText : MonoBehaviour
 
         while (_rtf.localScale.x >= 0.5f)
         {
-            _rtf.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
+            _rtf.localScale -= new Vector3(0.1f, 0.1f,0.1f);
         }
-        Invoke("uiSetActive", 0.5f);
-        Debug.Log("MOve");
-        value();
     }
 }
 
