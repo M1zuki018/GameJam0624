@@ -1,42 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class InputText : MonoBehaviour
 {
-    [SerializeField] private Text _text=default;
-    private string _preservation;
-    [SerializeField]public InputField _inputField=default;
-    private Transform _tf;
-    private void value()
-    {
-        //if (GameManager.Instance.CurrentQuestion.CheckAnswer(_inputField.text))
-        //{
-        //    Debug.Log("Answerture");
-        //}
+    [SerializeField] private Text _text = default;
+    [SerializeField] public InputField _inputField = default;
 
-        if (_text.text == _inputField.text)
-        {
-            Debug.Log("Answerture");
-            
-        }
-     
-        if (_inputField.text==_preservation)
-        {
-            Debug.Log("True");
-        }
-        else
-        {
-            Debug.Log($"{_text.text}");
-            Debug.Log("false");
-        }
-    }
+    private string _preservation;
+    private Transform _tf;
+
+    private SE _sePlayer = default;
 
     void Start()
     {
+        _sePlayer = FindObjectOfType<SE>();
         _inputField.onEndEdit.AddListener(EnterPressed);
     }
     void OnDestroy()
@@ -58,5 +35,29 @@ public class InputText : MonoBehaviour
         // Enterキーが押された時に実行するコード
         Debug.Log("EnterTrue");
         value();
+    }
+
+    private void value()
+    {
+        //if (GameManager.Instance.CurrentQuestion.CheckAnswer(_inputField.text))
+        //{
+        //    Debug.Log("Answerture");
+        //}
+
+        if (_text.text == _inputField.text)
+        {
+            Debug.Log("Answerture");
+            _sePlayer.QusetionDestroedSE(GameManager.Instance.CurrentQuestion.GetSE());
+        }
+
+        if (_inputField.text == _preservation)
+        {
+            Debug.Log("True");
+        }
+        else
+        {
+            Debug.Log($"{_text.text}");
+            Debug.Log("false");
+        }
     }
 }
