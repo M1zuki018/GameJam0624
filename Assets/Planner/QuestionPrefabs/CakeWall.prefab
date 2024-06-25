@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2707540601722068534}
   - component: {fileID: 2774932273058183362}
   - component: {fileID: 443243711837388754}
+  - component: {fileID: 2398782641747549557}
   m_Layer: 5
   m_Name: CakeWall
   m_TagString: Untagged
@@ -89,3 +90,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _questionData: {fileID: 11400000, guid: d0056061776ebc64786814e38a356c29, type: 2}
+--- !u!114 &2398782641747549557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2730264883419474595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75828a2253776f7469cfbf336c9ca644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
