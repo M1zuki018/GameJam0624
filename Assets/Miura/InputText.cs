@@ -5,10 +5,7 @@ public class InputText : MonoBehaviour
 {
     [SerializeField] private Text _text = default;
     [SerializeField] public InputField _inputField = default;
-
-    private string _preservation;
-    private Transform _tf;
-
+    public Ui _ui;
     private SE _sePlayer = default;
 
     void Start()
@@ -26,14 +23,16 @@ public class InputText : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
         {
             // ここで任意の関数を呼び出します
-            YourFunction();
+            Enter();
         }
     }
 
-    private void YourFunction()
+    private void Enter()
     {
         // Enterキーが押された時に実行するコード
         Debug.Log("EnterTrue");
+        
+       _ui.Move();
         value();
     }
 
@@ -49,14 +48,8 @@ public class InputText : MonoBehaviour
             Debug.Log("Answerture");
             _sePlayer.QuestionDestroyedSE(GameManager.Instance.CurrentQuestion.GetSE());
         }
-
-        if (_inputField.text == _preservation)
-        {
-            Debug.Log("True");
-        }
         else
         {
-            Debug.Log($"{_text.text}");
             Debug.Log("false");
         }
     }
