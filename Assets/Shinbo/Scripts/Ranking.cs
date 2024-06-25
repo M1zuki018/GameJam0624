@@ -22,7 +22,7 @@ public class Ranking : MonoBehaviour
         //_score = _setRanking; //スコアを取得
         //デバッグ用　point = 300;
 
-        SetRanking(_score);
+        SetRanking(ScoreManager.ResultScore);
 
         for(int i = 0; i < _rankingField.Length; i++)
         { 

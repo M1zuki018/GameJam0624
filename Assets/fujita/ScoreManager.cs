@@ -38,6 +38,8 @@ public class ScoreManager : MonoBehaviour
 
     public int StageCount => _stageCount;
 
+    public static int ResultScore;
+
     private void Start()
     {
         TotalScore = 0;
@@ -84,9 +86,11 @@ public class ScoreManager : MonoBehaviour
             SceneManager.LoadScene("ResultScene");
         }
         TotalScore = _baseScore * _stageCount;
+        ResultScore = TotalScore;
 
-        _isTimeCount = false;
+        _isTimeCount = true;
         _timer = _solveTime;
+        timeText.text = Mathf.RoundToInt(_timer).ToString();
     }
 
     /// <summary> スコアの表示を更新する関数 </summary>

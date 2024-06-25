@@ -79,6 +79,7 @@ public class InputText : MonoBehaviour
         _rtf.localScale = Vector3.one;
         _rtf.localPosition = _initialPos;
         _inputField.text = "";
+        _inputField.textComponent.text = "";
         Debug.Log(_rtf.localPosition);
         //uiSetActive();
     }
