@@ -7,12 +7,11 @@ public class CreditTextMove : MonoBehaviour
     [SerializeField] private float _waitSeconds = 5; //クレジットの秒数
     [SerializeField] private MainCursor _cursor;
 
-    private void Start()
+    public void Set()
     {
         //StartCoroutine(TextEnd());
         Invoke("TextEnd", _waitSeconds);
     }
-
     private void TextEnd()
     {
         _cursor._isFirst = false;
