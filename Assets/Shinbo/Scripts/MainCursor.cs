@@ -19,6 +19,8 @@ public class MainCursor : MonoBehaviour
     private SE _sePlayer; 
 
     private bool _isCredit = false;
+    public bool _isFirst;
+    public bool _switch;
 
     // Start is called before the first frame update
     void Start()
@@ -32,8 +34,11 @@ public class MainCursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetInput();
-        Select();
+        if (!_panel.activeInHierarchy && !_switch)
+        {
+            GetInput();
+            Select();
+        }
     }
 
     private void GetInput()
@@ -55,22 +60,28 @@ public class MainCursor : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (_index == 0) 
+            if (!_isFirst)
             {
-                _fadeOut.gameObject.SetActive(true);
-                Invoke("Scene", 2);
-            }
-            else
-            {
-                _panel.SetActive(true);
-                CreditOpen();
-            }
-            _sePlayer.QuestionDestroyedSE(_determinationSe);
+                if (_index == 0)
+                {
+                    _fadeOut.gameObject.SetActive(true);
+                    Invoke("Scene", 2);
+                    _switch = true;
+                }
+                else
+                {
+                    _panel.SetActive(true);
+                    CreditOpen();
+                }
+                _sePlayer.QuestionDestroyedSE(_determinationSe);
+                _isFirst = true;
+            }   
         }
     }
 
     private void Scene()
     {
+        _switch = false;
         SceneManager.LoadScene("GameScene");
     }
 
