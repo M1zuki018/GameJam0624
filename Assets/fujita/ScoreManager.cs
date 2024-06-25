@@ -17,6 +17,11 @@ public class ScoreManager : MonoBehaviour
     private int _baseScore = 0;
     private int _score = 0;
 
+    //SE関係
+    [SerializeField] public AudioClip _countdownRemainingSe;
+    private SE _sePlayer;
+    private bool _onePlay;
+
     public float SolveTime => _solveTime;
     protected int TotalScore
     {
@@ -34,6 +39,7 @@ public class ScoreManager : MonoBehaviour
     {
         TotalScore = 0;
         _timer = _solveTime;
+        _sePlayer = FindObjectOfType<SE>();
     }
 
     private void Update()
@@ -46,6 +52,13 @@ public class ScoreManager : MonoBehaviour
             _timer -= Time.deltaTime;
             timeText.text = Mathf.RoundToInt(_timer).ToString();
             //lefttimeが0になったら止まるようにします
+
+            if (_timer <= 5 && !_onePlay)
+            {
+                _sePlayer.QuestionDestroyedSE(_countdownRemainingSe);
+                _onePlay = true;
+            }
+
             if (_timer <= 0)
             {
                 _isTimeCount = false;

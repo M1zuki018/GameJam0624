@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private RectTransform _gameCanvas = default;
     [SerializeField] private GameObject[] _questionObj;
+    [SerializeField] private GameObject _fadeOut;
 
     private readonly Dictionary<SceneType, string> _sceneNameDict = new()
     {
@@ -60,9 +62,7 @@ public class GameManager : MonoBehaviour
 
         if (QuestionMove.IsGameOver)
         {
-            SceneManager.LoadScene(_sceneNameDict[_loadScene]);
-            //SceneManager.LoadScene(_sceneNameDict[SceneType.Result]);
-            QuestionMove.IsGameOver = false;
+            StartCoroutine(FinishPerformance());
         }
     }
 
@@ -71,10 +71,26 @@ public class GameManager : MonoBehaviour
         var go = Instantiate(_questionObj[Random.Range(0, _questionObj.Length)]);
         var rect = go.GetComponent<RectTransform>();
         rect.parent = _gameCanvas;
+        rect.SetAsFirstSibling();
         rect.localPosition = Vector3.zero;
         _currentQuestion = go.GetComponent<Question>();
     }
+    IEnumerator FinishPerformance()
+    {
+        //UI
+
+        yield return new WaitForSeconds(5);
+
+        _fadeOut.SetActive(true);
+
+        yield return new WaitForSeconds(2);
+        
+        SceneManager.LoadScene(_sceneNameDict[_loadScene]);
+        //SceneManager.LoadScene(_sceneNameDict[SceneType.Result]);
+        QuestionMove.IsGameOver = false;
+    }
 }
+
 
 public enum SceneType
 {
