@@ -42,7 +42,6 @@ public class Cursor : MonoBehaviour
 
                 if (!_isFadeIn)
                 {
-
                     Select();
                 }
             }
@@ -61,8 +60,8 @@ public class Cursor : MonoBehaviour
             _index++;
             _sePlayer.QuestionDestroyedSE(_cursolSe);
         }
-
-        transform.position = _button[_index].position;
+        _buttons[_index].Select();
+        //transform.position = _button[_index].position;
     }
 
     private void Select()
