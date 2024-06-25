@@ -60,13 +60,14 @@ public class Cursor : MonoBehaviour
 
     private void Select()
     {
+        Debug.Log(_index);
         if (Input.GetKeyDown(KeyCode.Return))
         {
             if(_index == 0) //リトライのシーン遷移
             {
                 Invoke("Retry", 2);
             }
-            else //タイトル画面のシーン遷移
+            else if (_index == 1) //タイトル画面のシーン遷移
             {
                 Invoke("Title", 2);
             }
@@ -82,6 +83,8 @@ public class Cursor : MonoBehaviour
 
     private void Title()
     {
+        GameObject obj = GameObject.FindWithTag("BGM");
+        Destroy(obj);
         SceneManager.LoadScene("TitleScene");
     }
 
