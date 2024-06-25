@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] _questionObj;
     [SerializeField] private GameObject _fadeOut;
     [SerializeField] public AudioClip CollisionSE;
+    [SerializeField] private GameObject _clearObj;
 
     private readonly Dictionary<SceneType, string> _sceneNameDict = new()
     {
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         if (_scoreManager == null) { _scoreManager = FindObjectOfType<ScoreManager>(); }
+        _clearObj.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -78,7 +80,7 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator FinishPerformance()
     {
-        //UI
+        _clearObj.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(5);
 
