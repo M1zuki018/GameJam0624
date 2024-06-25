@@ -16,6 +16,7 @@ public class ScoreManager : MonoBehaviour
     private int _stageCount = 0;
     private int _score = 0;
 
+    public float SolveTime => _solveTime;
     protected int Score
     {
         get => _score;
