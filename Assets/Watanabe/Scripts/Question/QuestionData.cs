@@ -13,6 +13,7 @@ public class QuestionData : ScriptableObject
     [SerializeField]
     private AudioClip _se = default;
 
+    public string ViewQuestion => _viewQuestion;
     public string Answer => _answerText;
     public int Score => _score;
     public AudioClip SE => _se;
