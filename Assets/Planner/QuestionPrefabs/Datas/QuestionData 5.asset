@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _viewQuestion: "\u25A1\u3059"
   _answerText: "\u5D29\u3059"
+  _se: {fileID: 8300000, guid: 45ceed4d1fe6d554d990800f340c7272, type: 3}
