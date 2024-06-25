@@ -1,48 +1,61 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainCursor : MonoBehaviour
 {
+    [SerializeField]
+    private Button[] _buttons = default;
+
     [SerializeField] private Transform[] _button;
-    private int _index;
+    private int _index = 0;
 
     [SerializeField] private GameObject _panel;
 
     [SerializeField] Animator _fadeOut;
 
+    [SerializeField] public AudioClip _cursolSe;
+    [SerializeField] public AudioClip _determinationSe;
+    private SE _sePlayer; 
+
+    private bool _isCredit = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        transform.position = _button[0].position;
+        _buttons[_index].Select();
+
+        _sePlayer = FindObjectOfType<SE>();
         _panel.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        CorsorMove();
+        GetInput();
         Select();
     }
 
-    private void CorsorMove()
+    private void GetInput()
     {
         if (Input.GetKeyDown(KeyCode.W) && _index != 0)
         {
             _index--;
+            _sePlayer.QuestionDestroyedSE(_cursolSe);
         }
         else if (Input.GetKeyDown(KeyCode.S) && _index != 1)
         {
             _index++;
+            _sePlayer.QuestionDestroyedSE(_cursolSe);
         }
-
-        transform.position = _button[_index].position;
+        _buttons[_index].Select();
     }
 
     private void Select()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (_index == 0) //リトライのシーン遷移
+            if (_index == 0) 
             {
                 _fadeOut.gameObject.SetActive(true);
                 Invoke("Scene", 2);
@@ -50,13 +63,19 @@ public class MainCursor : MonoBehaviour
             else
             {
                 _panel.SetActive(true);
+                CreditOpen();
             }
+            _sePlayer.QuestionDestroyedSE(_determinationSe);
         }
     }
 
-    void Scene()
+    private void Scene()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameScene");
     }
+
+    private void CreditOpen() => _isCredit = true;
+
+    public void CreditClose() => _isCredit = false;
 }
 

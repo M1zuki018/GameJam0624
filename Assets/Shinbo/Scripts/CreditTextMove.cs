@@ -4,20 +4,11 @@ using UnityEngine;
 public class CreditTextMove : MonoBehaviour
 {
     [SerializeField] private GameObject _panel;
-    [SerializeField] private int _waitSeconds = 5; //文字を送り終わった後の停止秒数
-    [SerializeField] private float _textSpead = 0.003f; //文字を送る速さ
+    [SerializeField] private int _waitSeconds = 5; //クレジットの秒数
 
-    // Update is called once per frame
-    private void Update()
+    private void Start()
     {
-        if (transform.localPosition.y >= -35)
-        {
-            StartCoroutine("TextEnd");
-        }
-        else
-        {
-            transform.Translate(0, _textSpead, 0);
-        }
+        StartCoroutine(TextEnd());
     }
 
     IEnumerator TextEnd()

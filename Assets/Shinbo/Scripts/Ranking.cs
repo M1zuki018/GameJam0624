@@ -67,7 +67,7 @@ public class Ranking : MonoBehaviour
 
     private void Update()
     {
-        if (_rankPanel._ranking)
+        if (_rankPanel.Ranking)
         {
             if (Input.GetKeyDown(KeyCode.S))
             {
