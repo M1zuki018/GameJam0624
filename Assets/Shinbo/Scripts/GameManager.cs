@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
             return _currentQuestion;
         }
     }
+    public ScoreManager ScoreManager => _scoreManager;
 
     public static GameManager Instance { get; private set; }
 

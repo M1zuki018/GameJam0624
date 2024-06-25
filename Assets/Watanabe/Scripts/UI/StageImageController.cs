@@ -35,6 +35,8 @@ public class StageImageController : MonoBehaviour
             _stageImages[i].Initialize(cell.GetComponent<Image>(), _notClearedColor, _clearedColor);
         }
     }
+
+    public void Correct(int index) => _stageImages[index - 1].IsCleared = true;
 }
 
 public class StageImage : MonoBehaviour
