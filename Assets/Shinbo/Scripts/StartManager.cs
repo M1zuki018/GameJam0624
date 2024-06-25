@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 /// <summary>
 /// ①シーンが読み込まれたら、遊び方説明が表示されている状態
@@ -12,26 +13,24 @@ public class StartManager : MonoBehaviour
 
     public static bool IsGameStart = false;
 
+    [SerializeField] public AudioClip _determinationSe;
+    private SE _sePlayer;
+
     // Start is called before the first frame update
-    private void Start()
+    private IEnumerator Start()
     {
         _explanationPanel.SetActive(true);
-    }
+        _sePlayer = FindObjectOfType<SE>();
 
-    // Update is called once per frame
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            GameStart();
-        }
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+        GameStart();
     }
 
     private void GameStart()
     {
         Debug.Log("ゲームスタート");
         IsGameStart = true;
-        //ゲーム開始の関数をここから呼べるようにする
+        _sePlayer.QuestionDestroyedSE(_determinationSe);
         _explanationPanel.SetActive(false);
         gameObject.SetActive(false);
     }
