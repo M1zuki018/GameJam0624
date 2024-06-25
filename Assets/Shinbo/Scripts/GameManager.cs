@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         var go = Instantiate(_questionObj[Random.Range(0, _questionObj.Length)]);
         var rect = go.GetComponent<RectTransform>();
         rect.parent = _gameCanvas;
-        rect.SetAsFirstSibling();
+        rect.SetSiblingIndex(1);
         rect.localPosition = Vector3.zero;
         _currentQuestion = go.GetComponent<Question>();
     }
