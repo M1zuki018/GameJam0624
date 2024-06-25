@@ -47,7 +47,7 @@ public class InputText : MonoBehaviour
         if (_text.text == _inputField.text)
         {
             Debug.Log("Answerture");
-            _sePlayer.QusetionDestroedSE(GameManager.Instance.CurrentQuestion.GetSE());
+            _sePlayer.QuestionDestroyedSE(GameManager.Instance.CurrentQuestion.GetSE());
         }
 
         if (_inputField.text == _preservation)
