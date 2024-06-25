@@ -68,4 +68,11 @@ public class ScoreManager : MonoBehaviour
     {
         scoreText.text = _score.ToString();
     }
+
+    //leftTimeリセット用関数
+    public void ResetleftTime()
+    {
+        //この数値は制限時間にあわせて変更してください
+        _timer = 30;
+    }
 }
