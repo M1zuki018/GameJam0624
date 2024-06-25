@@ -1,7 +1,7 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Cursor : MonoBehaviour
 {
@@ -17,6 +17,8 @@ public class Cursor : MonoBehaviour
     [SerializeField] private GameObject _fadePanel;
 
     private bool _isFadeIn;
+    private bool _isFirst;
+    private bool _isFadeOut;
 
     // Start is called before the first frame update
     void Start()
@@ -32,12 +34,17 @@ public class Cursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_isFadeIn)
+        if (!_isFadeOut)
         {
             if (!_rankingField.Ranking) //ランキングがtrueなら、ランキングの操作を行う
             {
                 CorsorMove();
-                Select();
+
+                if (!_isFadeIn)
+                {
+
+                    Select();
+                }
             }
         }
     }
@@ -63,26 +70,34 @@ public class Cursor : MonoBehaviour
         Debug.Log(_index);
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if(_index == 0) //リトライのシーン遷移
+            if (!_isFirst)
             {
-                Invoke("Retry", 2);
+                if (_index == 0) //リトライのシーン遷移
+                {
+                    Invoke("Retry", 2);
+                    _isFadeOut = true;
+                }
+                else if (_index == 1) //タイトル画面のシーン遷移
+                {
+                    Invoke("Title", 2);
+                    _isFadeOut = true;
+                }
+                _sePlayer.QuestionDestroyedSE(_determinationSe);
+                _fadePanel.SetActive(true);
+                _isFirst = true;
             }
-            else if (_index == 1) //タイトル画面のシーン遷移
-            {
-                Invoke("Title", 2);
-            }
-            _sePlayer.QuestionDestroyedSE(_determinationSe);
-            _fadePanel.SetActive(true);
         }
     }
 
     private void Retry()
     {
+        _isFadeOut = false;
         SceneManager.LoadScene("GameScene");
     }
 
     private void Title()
     {
+        _isFadeOut = false;
         GameObject obj = GameObject.FindWithTag("BGM");
         Destroy(obj);
         SceneManager.LoadScene("TitleScene");
@@ -99,6 +114,6 @@ public class Cursor : MonoBehaviour
 
         yield return new WaitForSeconds(2);
 
-        _isFadeIn =false;
+        _isFadeIn = false;
     }
 }
