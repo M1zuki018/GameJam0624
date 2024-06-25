@@ -295,6 +295,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 120
       objectReference: {fileID: 0}
+    - target: {fileID: 4608815459130614167, guid: 24f62eee265ee794785fce4eaae4179f, type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4904291417548419424, guid: 24f62eee265ee794785fce4eaae4179f, type: 3}
       propertyPath: m_Name
       value: TitleCanvas
@@ -343,6 +347,26 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 31c1106f48d5738428fa97e7bca25aca, type: 3}
+    - target: {fileID: 8691217223786060542, guid: 24f62eee265ee794785fce4eaae4179f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9996636
+      objectReference: {fileID: 0}
+    - target: {fileID: 8691217223786060542, guid: 24f62eee265ee794785fce4eaae4179f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8691217223786060542, guid: 24f62eee265ee794785fce4eaae4179f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8691217223786060542, guid: 24f62eee265ee794785fce4eaae4179f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.025939472
+      objectReference: {fileID: 0}
+    - target: {fileID: 8691217223786060542, guid: 24f62eee265ee794785fce4eaae4179f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 2.973
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 798620722548593565, guid: 24f62eee265ee794785fce4eaae4179f, type: 3}
@@ -354,7 +378,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3814951837522345518, guid: 24f62eee265ee794785fce4eaae4179f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 770647562}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6859997690030365863, guid: 24f62eee265ee794785fce4eaae4179f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 962810553}
   m_SourcePrefab: {fileID: 100100000, guid: 24f62eee265ee794785fce4eaae4179f, type: 3}
 --- !u!224 &397040364 stripped
 RectTransform:
@@ -650,6 +677,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869858573}
   m_CullTransparentMesh: 1
+--- !u!1 &962810549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6859997690030365863, guid: 24f62eee265ee794785fce4eaae4179f, type: 3}
+  m_PrefabInstance: {fileID: 397040363}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &962810553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962810549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 1, g: 0.60031927, b: 0, a: 1}
+  m_EffectDistance: {x: 3, y: -3}
+  m_UseGraphicAlpha: 1
 --- !u!114 &992648194 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 782506802120339371, guid: 24f62eee265ee794785fce4eaae4179f, type: 3}
