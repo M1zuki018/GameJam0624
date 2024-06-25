@@ -237,6 +237,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 123868360}
   m_CullTransparentMesh: 1
+--- !u!1 &146505611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 146505612}
+  - component: {fileID: 146505614}
+  - component: {fileID: 146505613}
+  m_Layer: 5
+  m_Name: Text (Legacy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &146505612
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146505611}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 176233022}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 551, y: -308}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &146505613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146505611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 31c1106f48d5738428fa97e7bca25aca, type: 3}
+    m_FontSize: 36
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 286
+    m_Alignment: 2
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: "\u30A8\u30F3\u30BF\u30FC\u30AD\u30FC\u3092\u62BC\u3057\u3066\u30B2\u30FC\u30E0\u30B9\u30BF\u30FC\u30C8!"
+--- !u!222 &146505614
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 146505611}
+  m_CullTransparentMesh: 1
 --- !u!1 &176233021 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5700700801807205151, guid: 425fe3b7cf398eb438c6c4500201d0b6, type: 3}
@@ -1257,6 +1336,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4762529196034707827, guid: 425fe3b7cf398eb438c6c4500201d0b6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1383538953}
+    - targetCorrespondingSourceObject: {fileID: 4762529196034707827, guid: 425fe3b7cf398eb438c6c4500201d0b6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 146505612}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4206328610379464870, guid: 425fe3b7cf398eb438c6c4500201d0b6, type: 3}
       insertIndex: -1
@@ -1336,30 +1418,6 @@ PrefabInstance:
       propertyPath: scoreText
       value: 
       objectReference: {fileID: 1618811423}
-    - target: {fileID: 1542401053576013223, guid: c83d33e8b66ad21409cb2579100ded64, type: 3}
-      propertyPath: _solveTime
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1542401053576013223, guid: c83d33e8b66ad21409cb2579100ded64, type: 3}
-      propertyPath: _gameOverSe
-      value: 
-      objectReference: {fileID: 8300000, guid: ee5004673d938904eb9cf437eb8f7f26, type: 3}
-    - target: {fileID: 1542401053576013223, guid: c83d33e8b66ad21409cb2579100ded64, type: 3}
-      propertyPath: _gameClearSe
-      value: 
-      objectReference: {fileID: 8300000, guid: b7d15abee41ee7e469e50768b6d61914, type: 3}
-    - target: {fileID: 1542401053576013223, guid: c83d33e8b66ad21409cb2579100ded64, type: 3}
-      propertyPath: _countdownRemainingSe
-      value: 
-      objectReference: {fileID: 8300000, guid: acda646e24bb78944bd07e943058c9da, type: 3}
-    - target: {fileID: 1584109054745461248, guid: c83d33e8b66ad21409cb2579100ded64, type: 3}
-      propertyPath: _minecartSe
-      value: 
-      objectReference: {fileID: 8300000, guid: cff78fef895624f4b899dc35ce7cb0a5, type: 3}
-    - target: {fileID: 1584109054745461248, guid: c83d33e8b66ad21409cb2579100ded64, type: 3}
-      propertyPath: _determinationSe
-      value: 
-      objectReference: {fileID: 8300000, guid: 0d9a9a7cc2a9b17448fc35e95c1bcbf8, type: 3}
     - target: {fileID: 1584109054745461248, guid: c83d33e8b66ad21409cb2579100ded64, type: 3}
       propertyPath: _explanationPanel
       value: 
@@ -1373,16 +1431,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 686958476}
     - target: {fileID: 6356338845414814184, guid: c83d33e8b66ad21409cb2579100ded64, type: 3}
-      propertyPath: CollisionSE
-      value: 
-      objectReference: {fileID: 8300000, guid: 497bb08229fc76141a1c85f4262152fc, type: 3}
-    - target: {fileID: 6356338845414814184, guid: c83d33e8b66ad21409cb2579100ded64, type: 3}
       propertyPath: _gameCanvas
       value: 
       objectReference: {fileID: 1486117191}
     m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: 8814336246159938666, guid: c83d33e8b66ad21409cb2579100ded64, type: 3}
+    m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c83d33e8b66ad21409cb2579100ded64, type: 3}
