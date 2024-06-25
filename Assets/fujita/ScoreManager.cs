@@ -14,16 +14,17 @@ public class ScoreManager : MonoBehaviour
     private bool _isTimeCount = true;
     /// <summary> クリアした問題の数 </summary>
     private int _stageCount = 0;
+    private int _baseScore = 0;
     private int _score = 0;
 
     public float SolveTime => _solveTime;
-    protected int Score
+    protected int TotalScore
     {
         get => _score;
         private set
         {
             _score = value;
-            SetScoreText();
+            SetScoreText(value);
         }
     }
 
@@ -31,7 +32,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
-        Score = 0;
+        TotalScore = 0;
         _timer = _solveTime;
     }
 
@@ -58,16 +59,18 @@ public class ScoreManager : MonoBehaviour
     {
         //クリア数を加算して、スコアを更新
         _stageCount++;
-        Score += Mathf.RoundToInt(_timer) * _stageCount;
+        _baseScore += (GameManager.Instance.CurrentQuestion.GetQuestionScore() - Mathf.RoundToInt(_timer));
+
+        TotalScore = _baseScore * _stageCount;
 
         _isTimeCount = false;
         _timer = _solveTime;
     }
 
     /// <summary> スコアの表示を更新する関数 </summary>
-    private void SetScoreText()
+    private void SetScoreText(float value)
     {
-        scoreText.text = _score.ToString();
+        scoreText.text = value.ToString();
     }
 
     //leftTimeリセット用関数

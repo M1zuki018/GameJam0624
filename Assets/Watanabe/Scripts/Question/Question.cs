@@ -15,5 +15,7 @@ public class Question : MonoBehaviour
 
     public bool CheckAnswer(string input) => input == _questionData.Answer;
 
+    public int GetQuestionScore() => _questionData.Score;
+
     public AudioClip GetSE() => _questionData.SE;
 }
