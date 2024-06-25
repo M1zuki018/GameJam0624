@@ -3,17 +3,30 @@ using UnityEngine.EventSystems;
 
 public class MouseOver : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public bool _ranking;
+    [SerializeField]
+    private Cursor _cursor = default;
+
+    private bool _ranking = false;
+
+    public bool Ranking
+    {
+        get => _ranking;
+        private set
+        {
+            _ranking = value;
+            _cursor.ButtonEnabled(!value);
+        }
+    }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("enter");
-        _ranking = true;
+        Ranking = true;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log("exit");
-        _ranking = false;
+        Ranking = false;
     }
 }
