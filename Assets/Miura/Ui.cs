@@ -29,8 +29,17 @@ public class Ui : MonoBehaviour
         {
             _rtf.localScale -= new Vector3(0.001f, 0.001f, 0.001f);
         }
-        _uiTime += Time.time;
-        Debug.Log(_uiTime);
+        while (_uiTime <= 2)
+        {
+            _uiTime += Time.deltaTime;
+            Debug.Log(_uiTime);
+            if (_uiTime >= 2)
+            {
+                Debug.Log($"_uiTime{_uiTime}");
+            }
+        }
+        
+        
         if (_uiTime >= 2)
         {
             Debug.Log("Time");
