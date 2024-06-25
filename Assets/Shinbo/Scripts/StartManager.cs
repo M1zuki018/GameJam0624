@@ -21,6 +21,7 @@ public class StartManager : MonoBehaviour
     // Start is called before the first frame update
     private IEnumerator Start()
     {
+        IsGameStart = false ;
         _explanationPanel.SetActive(true);
         _sePlayer = FindObjectOfType<SE>();
 

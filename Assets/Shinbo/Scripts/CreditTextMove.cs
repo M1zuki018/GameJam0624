@@ -4,16 +4,28 @@ using UnityEngine;
 public class CreditTextMove : MonoBehaviour
 {
     [SerializeField] private GameObject _panel;
-    [SerializeField] private int _waitSeconds = 5; //クレジットの秒数
+    [SerializeField] private float _waitSeconds = 5; //クレジットの秒数
+    [SerializeField] private MainCursor _cursor;
 
     private void Start()
     {
-        StartCoroutine(TextEnd());
+        //StartCoroutine(TextEnd());
+        Invoke("TextEnd", _waitSeconds);
     }
 
-    IEnumerator TextEnd()
+    private void TextEnd()
     {
-        yield return new WaitForSeconds(_waitSeconds);
+        _cursor._isFirst = false;
         _panel.SetActive(false);
     }
+
+    /*
+    IEnumerator TextEnd()
+    {
+        Debug.Log("start");
+        yield return new WaitForSeconds(_waitSeconds);
+        //_cursor._isFirst = false;
+        _panel.SetActive(false);
+    }
+    */
 }
