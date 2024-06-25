@@ -1,23 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Startbutton : MonoBehaviour
+public class StartButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private SceneType _nextScene = SceneType.Title;
 
-    // Update is called once per frame
-    void Update()
+    private readonly Dictionary<SceneType, string> _sceneNameDict = new()
     {
-        
-    }
-    public void SwitchScene()
-    {
-        SceneManager.LoadScene("secondtest", LoadSceneMode.Single);
-    }
+        { SceneType.Title, "TitleScene" },
+        { SceneType.InGame, "GameScene" },
+        { SceneType.Result, "ResultScene" }
+    };
+
+    public void SwitchScene(string sceneName = "TitleScene") => SceneManager.LoadScene(sceneName);
+
+    public void SwitchScene() => SceneManager.LoadScene(_sceneNameDict[_nextScene]);
 }
