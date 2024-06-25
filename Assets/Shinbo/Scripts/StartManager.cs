@@ -10,11 +10,13 @@ using UnityEngine;
 public class StartManager : MonoBehaviour
 {
     [SerializeField] private GameObject _explanationPanel;
+    [SerializeField] private int _startWait = 5;
 
     public static bool IsGameStart = false;
 
-    [SerializeField] public AudioClip _determinationSe;
+    [SerializeField] public AudioClip _minecartSe;
     private SE _sePlayer;
+
 
     // Start is called before the first frame update
     private IEnumerator Start()
@@ -28,10 +30,16 @@ public class StartManager : MonoBehaviour
 
     private void GameStart()
     {
+        _sePlayer.QuestionDestroyedSE(_minecartSe);
+        _explanationPanel.SetActive(false);
+        StartCoroutine(StartingPerformance());
+    }
+
+    IEnumerator StartingPerformance()
+    {
+        yield return new WaitForSeconds(_startWait);
         Debug.Log("ゲームスタート");
         IsGameStart = true;
-        _sePlayer.QuestionDestroyedSE(_determinationSe);
-        _explanationPanel.SetActive(false);
         gameObject.SetActive(false);
     }
 }

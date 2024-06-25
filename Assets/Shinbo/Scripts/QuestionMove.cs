@@ -11,14 +11,14 @@ public class QuestionMove : MonoBehaviour
     private float _timer = 0f;
     private float _solveTime = 0f;
 
-    private Transform _tf;
+    private RectTransform _tf;
     public static bool IsGameOver;
 
     private void Start()
     {
         _solveTime = GameManager.Instance.ScoreManager.SolveTime;
 
-        _tf = gameObject.transform;
+        _tf = gameObject.GetComponent<RectTransform>();
         _tf.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         StartCoroutine(Expansion());
     }
@@ -27,7 +27,6 @@ public class QuestionMove : MonoBehaviour
     {
         while (_timer <= _rapidMoveTime)
         {
-            Debug.Log("rapid");
             _timer += Time.deltaTime;
             var elapsed = Time.deltaTime / _rapidMoveTime;
 
@@ -35,12 +34,13 @@ public class QuestionMove : MonoBehaviour
             yield return null;
         }
 
-        while (_timer <= _solveTime)
+        while (_timer <= _solveTime && !Mathf.Approximately(_tf.localScale.x, _finalScale))
         {
-            Debug.Log("solve");
+            _timer += Time.deltaTime;
             var elapsed = Time.deltaTime / _solveTime;
 
             _tf.localScale += Vector3.one * elapsed;
+
             yield return null;
         }
 
