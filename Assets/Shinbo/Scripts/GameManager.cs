@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     private RectTransform _gameCanvas = default;
     [SerializeField] private GameObject[] _questionObj;
     [SerializeField] private GameObject _fadeOut;
+    [SerializeField] public AudioClip CollisionSE;
 
     private readonly Dictionary<SceneType, string> _sceneNameDict = new()
     {

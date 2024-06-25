@@ -13,11 +13,16 @@ public class QuestionMove : MonoBehaviour
 
     private RectTransform _tf;
     public static bool IsGameOver;
+    
+    private AudioClip _collisionSe;
+    private SE _sePlayer;
 
     private void Start()
     {
         _solveTime = GameManager.Instance.ScoreManager.SolveTime;
 
+        _collisionSe = GameManager.Instance.CollisionSE;
+        _sePlayer = FindObjectOfType<SE>();
         _tf = gameObject.GetComponent<RectTransform>();
         _tf.localScale = new Vector3(0.1f, 0.1f, 0.1f);
         StartCoroutine(Expansion());
@@ -45,6 +50,7 @@ public class QuestionMove : MonoBehaviour
         }
 
         Debug.Log("ゲームオーバー");
+        _sePlayer.QuestionDestroyedSE(_collisionSe);
         IsGameOver = true;
         yield break;
     }
