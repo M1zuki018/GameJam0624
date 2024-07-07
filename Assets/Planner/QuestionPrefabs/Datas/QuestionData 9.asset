@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4d63bd6a66c6ae418e77478851e1a2a, type: 3}
   m_Name: QuestionData 9
   m_EditorClassIdentifier: 
-  _viewQuestion: "\u25A1\u304B\u3059"
-  _answerText: "\u9000\u304B\u3059"
+  _viewQuestion: "\u74E6\u792B(\u304C\u308C\u304D)\u3092O\u304B\u3059"
+  _answerText: "\u3069\u304B\u3059"
+  _score: 100
   _se: {fileID: 8300000, guid: 7bdb389eca487054495c08fa1b6e8d79, type: 3}
